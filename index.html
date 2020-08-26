@@ -43,9 +43,12 @@
               "translate(" + margin.left + "," + margin.top + ")");
 
     var numformat = d3.format(".1%")
+    
 var r=0
+var c=0
+var t=0
 var i;
-for (i = 1; i <=1000; i++) {			
+for (i = 1; i <1000; i++) {			
 //raptors 
 rFG = function getRandomIntInclusive(min, max) {
   min = Math.floor(36);
@@ -123,7 +126,8 @@ svg.append("text")
 .text(
 result = function (d) {
 if (raptors>celtics){return r+=1}
-else {return r+=0}
+else if (celtics>raptors) {return c+=1}
+else {return t+=1}
 })
 
 svg.append("text")
@@ -135,7 +139,9 @@ svg.append("text")
   else{return 0}
 })
 .text(r/(i))
-winPct = r/i
+torPct = r/i
+bosPct = c/i
+tiePct = t/i
 }
 
 //scoreboard
@@ -144,7 +150,7 @@ svg.append('text')
 .attr("y",110)
 .attr("stroke","black")
 .attr("font-size","30px")
-.text("TOR: " +numformat(winPct))
+.text("TOR: " +numformat(torPct))
 
 svg.append("image")
 .attr("xlink:href","https://sportslogohistory.com/wp-content/uploads/2016/SLH/nba_alternate/toronto_raptors_2015-present-a.png")
@@ -158,7 +164,7 @@ svg.append('text')
 .attr("y",155)
 .attr("font-size","30px")
 .attr("stroke","black")
-.text("BOS: " +numformat(1-winPct))  
+.text("BOS: " +numformat(bosPct))  
 
 svg.append("image")
 .attr("xlink:href","https://www.nba.com/resources/static/team/v2/celtics/media/NewAlt_type_grn_1024.png")
@@ -167,12 +173,112 @@ svg.append("image")
 .attr("height",30)
 .attr("width",30)
 
-/*var r=0
-var c = 0
-var i;
-for (i = 0; i < 50000; i++) {
-  if (raptors>celtics){return r+1}
-  else {return c+1}
-}*/
+svg.append('text')
+.attr("x",140)
+.attr("y",175)
+.attr("font-size","10px")
+.attr("stroke","grey")
+.text("TIE: " +numformat(tiePct))  
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',500)
+.text("Methodology:")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',512)
+.text("The win probabilities were calculated using the results of "+ (i)+" simulations. The simulations were calculated using the ")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',524)
+.text("past performace of each team while inside the NBA's Orlando, FL bubble. The data was used to create 95% confidence  ")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',536)
+.text("intervals for both their offensive performance (field goals made/game, three pointers made/game and free throws made/")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',548)
+.text("game) and their defensive performance (opponents' FGM/G, 3PM/G and FTM/G). These confidence intervals were then")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',560)
+.text("used for the simulation that generated possible offensive and defensive performances for both teams. These performances ")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',572)
+.text("were converted to the resulting score for each team using the following formula: ")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',584)
+.text("0.5*((team3PM*3+team2PM*2+teamFTM)+(opponent allowed 3PM*3+opponent allowed 2PM*2+opponent allowed FTM))")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',596)
+.text("The scores were calculated for each of the teams and compared. The wins for each team were converted to a winning percentage, ")
+
+svg.append("text")
+.attr("class","methodology")
+.attr("fill","lightgrey")
+.attr("font-size","12px")
+//.attr("text-decoration","underline")
+.attr("x",0)
+.attr('y',608)
+.text("and thus a win probability, accounting for ties.")
+
+svg.append("rect")
+.attr("x",-10)
+.attr("y",486)
+.attr("height",130)
+.attr("width",640)
+.attr("stroke","black")
+.attr('fill',"none")
+
+
+
 
     </script>
