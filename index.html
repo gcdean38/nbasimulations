@@ -30,7 +30,7 @@
 
     // set the dimensions and margins of the graph
     var margin = {top: 30, right: 30, bottom: 70, left: 60},
-        width = 1114 - margin.left - margin.right,
+        width = 700 - margin.left - margin.right,
         height = 710 - margin.top - margin.bottom;
     
     // append the svg object to the body of the page
@@ -145,39 +145,66 @@ tiePct = t/i
 }
 
 //scoreboard
+svg.append("image")
+.attr("xlink:href","https://sportslogohistory.com/wp-content/uploads/2016/SLH/nba_alternate/toronto_raptors_2015-present-a.png")
+.attr("x",width*.1)
+.attr("y",90)
+.attr("height",200)
+.attr("width",200)
+.attr("opacity",0.6)
+
 svg.append('text')
-.attr("x",100)
-.attr("y",110)
+.attr("x",160)
+.attr("y",200)
 .attr("stroke","black")
-.attr("font-size","30px")
+.attr("font-size","38px")
+.attr("text-anchor","middle")
 .text("TOR: " +numformat(torPct))
 
 svg.append("image")
-.attr("xlink:href","https://sportslogohistory.com/wp-content/uploads/2016/SLH/nba_alternate/toronto_raptors_2015-present-a.png")
-.attr("x",60)
-.attr("y",85)
-.attr("height",30)
-.attr("width",30)
+.attr("xlink:href","https://www.nba.com/resources/static/team/v2/celtics/media/NewAlt_type_grn_1024.png")
+.attr("x",width*.6)
+.attr("y",90)
+.attr("height",200)
+.attr("width",200)
+.attr("opacity",0.6)
+
 
 svg.append('text')
-.attr("x",100)
-.attr("y",155)
-.attr("font-size","30px")
+.attr("x",466)
+.attr("y",200)
+.attr("font-size","38px")
 .attr("stroke","black")
+.attr("text-anchor","middle")
 .text("BOS: " +numformat(bosPct))  
 
-svg.append("image")
-.attr("xlink:href","https://www.nba.com/resources/static/team/v2/celtics/media/NewAlt_type_grn_1024.png")
-.attr("x",60)
-.attr("y",130)
-.attr("height",30)
-.attr("width",30)
+svg.append("circle")
+.attr("cx",466)
+.attr("cy",190)
+.attr("r",110)
+.attr("stroke", function(d){
+  if (bosPct>torPct) {return "black"}
+  else {return "none"}})
+.attr("stroke-width","5px")
+.attr("fill","none")
+
+svg.append("circle")
+.attr("cx",160)
+.attr("cy",190)
+.attr("r",110)
+.attr("stroke", function(d){
+  if (bosPct<torPct) {return "black"}
+  else {return "none"}})
+.attr("stroke-width","5px")
+.attr("fill","none")
+
 
 svg.append('text')
-.attr("x",140)
-.attr("y",175)
-.attr("font-size","10px")
+.attr("x",276)
+.attr("y",200)
+.attr("font-size","18px")
 .attr("stroke","grey")
+.attr("text-anchor","right")
 .text("TIE: " +numformat(tiePct))  
 
 //methodology
