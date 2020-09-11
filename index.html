@@ -47,7 +47,7 @@
     var g = svg.append("g")
     	.attr("transform", "translate(10, 0)");
     
-   	d3.csv("leadchanges.csv", function(data) {
+   	d3.csv("https://raw.githubusercontent.com/gcdean38/nbasimulations/master/leadchanges.csv", function(data) {
 
       // Pre-processing
       // {"id" : 1, "name": "A", "value": 10, "date": "2016-01"}
